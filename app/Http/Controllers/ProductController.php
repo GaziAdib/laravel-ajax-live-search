@@ -115,28 +115,29 @@ class ProductController extends Controller
         if($request->ajax()) {
 
             $output = '';
+
             $products = Product::where('title', 'LIKE', '%'.$request->search.'%')
-            ->orWhere('price', 'LIKE', '%'.$request->search.'%')
-            ->orWhere('category', 'LIKE', '%'.$request->search.'%')
-            ->get();
+                            ->orWhere('category', 'LIKE', '%'.$request->search.'%')
+                            ->orWhere('price', 'LIKE', '%'.$request->search.'%')
+                            ->get();
 
             if($products) {
 
                 foreach($products as $product) {
 
-
                     $output .=
-                    '<div class="card-body mt-2 mb-2">
-                      <img class="card-img-top" src="'.$product->thumbnail.'" alt="Card image cap">
-                      <h5 class="card-title"><b>'.$product->title.'</b></h5>
-                      <h5 class="card-title">$'.$product->price.'</h5>
-                      <h5 class="card-title"><b class="text-success">'.$product->category.'</b></h5>
-
-                    </div>';
+                    '<div class="card-body">
+                    <img class="card-img-top" src="'.$product->thumbnail.'" alt="Card image cap">
+                        <h5 class="card-title"><b>'.$product->title.'</b></h5>
+                        <h5 class="card-title"><b class="text-success">'.$product->category.'</b></h5>
+                        <h5 class="card-title">$'.$product->price.'</h5>
+                    </div>
+                  ';
 
                 }
 
-               return response()->json($output);
+                return response()->json($output);
+
             }
 
         }
@@ -144,5 +145,6 @@ class ProductController extends Controller
         return view('products.search');
 
     }
+
 
 }

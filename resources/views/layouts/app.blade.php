@@ -12,7 +12,6 @@
 
     @yield('content')
 
-    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
 
     <script
     src="https://code.jquery.com/jquery-3.6.0.min.js"
